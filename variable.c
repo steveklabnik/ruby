@@ -2506,8 +2506,9 @@ cvar_list(void *data)
  *     class Two < One
  *       @@var2 = 2
  *     end
- *     One.class_variables   #=> [:@@var1]
- *     Two.class_variables   #=> [:@@var2, :@@var1]
+ *     One.class_variables          #=> [:@@var1]
+ *     Two.class_variables          #=> [:@@var2, :@@var1]
+ *     Two.class_variables(false)   #=> [:@@var2]
  */
 
 VALUE
