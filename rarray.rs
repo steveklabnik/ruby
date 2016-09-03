@@ -10,12 +10,11 @@ pub type Value = libc::uintptr_t;
 static Qnil: libc::uintptr_t = 0x08 as libc::uintptr_t;
 
 #[no_mangle]
-pub unsafe extern fn rb_mem_clear(mut mem: *mut Value, mut size: libc::c_long) {
-    while size != 0 {
-        size -= 1;
-        *mem = Qnil;
+pub unsafe extern fn rb_mem_clear(mem: *mut Value, size: libc::c_long) {
+    for i in 0..size {
+        let mem = mem.offset(i as isize);
 
-        mem = mem.offset(1);
+        *mem = Qnil;
     }
 }
 
