@@ -552,3 +552,11 @@ un-runnable:
 	$(Q) exit 1
 
 distclean-local::; @$(RM) GNUmakefile uncommon.mk
+
+array.c:
+
+array.o: rubyarray.c rarray.rs
+	rustc rarray.rs --crate-type=staticlib -Cpanic=abort
+	@$(ECHO) compiling $<
+	$(CC) $(CFLAGS) $(XCFLAGS) $(CPPFLAGS) $(COUTFLAG)$@ -c $< -o rubyarray.o
+	ld -r rubyarray.o librarray.a -o array.o

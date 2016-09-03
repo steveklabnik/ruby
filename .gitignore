@@ -30,6 +30,7 @@
 .pc
 .ppack
 .svn
+!./Makefile
 Makefile
 Makefile.old
 cygruby*.def
